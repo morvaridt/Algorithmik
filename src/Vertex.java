@@ -4,16 +4,13 @@ public class Vertex extends Struct{
 	// coordinates
 	int[] v;
 	
-	Edge duplicte;
+	Edge duplicate;
 	
 	boolean onhull;
 	boolean mark;
 	
-	// TODO: really exists?
+	// TODO: really used?
 	int vnum;
-	
-	Vertex next;
-	Vertex prev;
 
 	public Vertex(){
 		v = new int[3];
@@ -22,9 +19,9 @@ public class Vertex extends Struct{
 	public Vertex makeVertex(){
 		Vertex v = new Vertex();
 
-		v.duplicte = null;
-		v.onhull = ! ConvexHull.ONHULL;
-		v.mark = ! ConvexHull.PROCESSED;
+		v.duplicate = null;
+		v.onhull = false;
+		v.mark = false;
 		
 		add(v);
 		

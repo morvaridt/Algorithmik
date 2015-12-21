@@ -1,30 +1,30 @@
-import java.util.LinkedList;
-import java.util.Queue;
 
 
 public class ConvexHull {
+		
 	
-	//TODO: entfernen
-	// final variables used for implementation of incremental algorithm
-	final static boolean ONHULL = true;
-	final static boolean REMOVED = true;
-	final static boolean VISIBLE = true;
-	// TODO:  processed = false?? 
-	final static boolean PROCESSED = true;	
-	
-	static Queue<Edge> edges;
-	static Queue<Face> faces;
-	static Queue<Vertex> vertices;
+	static LinkedQueue edges;
+	static LinkedQueue faces;
+	static LinkedQueue vertices;
 
 	
 	public static void main(String[] args){
 		setUp();
+		Struct.readVertices();
+		Struct.buildTetrahedron();
+		Struct.constructHull();
+		print();
 	}
 	
+	private static void print() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	public static void setUp(){
-		edges = new LinkedList<>();
-		faces = new LinkedList<>();		
-		vertices = new LinkedList<>();
+		edges = new LinkedQueue();
+		faces = new LinkedQueue();		
+		vertices = new LinkedQueue();
 	}
 
 }

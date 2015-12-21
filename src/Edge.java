@@ -16,13 +16,15 @@ public class Edge extends Struct{
 		adjface = new Face[2];
 	}
 			
+	
+	// TODO: change this method, so the two endpoints are given at the calling
 	public static Edge makeEdge(){
 		Edge e = new Edge();
 		e.endpts = new Vertex[2];
 		e.adjface = new Face[2];
 	
 		e.newface = null;
-		e.deleted = ! ConvexHull.REMOVED;
+		e.deleted = true;
 		
 		add(e);
 		

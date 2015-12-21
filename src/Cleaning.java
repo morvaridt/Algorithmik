@@ -1,13 +1,13 @@
 
 public class Cleaning {
 
-	public void cleanUp(){
+	public static void cleanUp(){
 		cleanEdges();
 		cleanFaces();
 		cleanVertices();
 	}
 
-	private void cleanEdges() {		
+	private static void cleanEdges() {		
 		Edge firstEdge = ConvexHull.edges.peek();
 		Edge currentEdge = ConvexHull.edges.poll();
 		
@@ -37,7 +37,7 @@ public class Cleaning {
 		}
 	}
 	
-	private void cleanFaces() {
+	private static void cleanFaces() {
 		Face firstFace = ConvexHull.faces.peek();
 		Face currentFace = ConvexHull.faces.poll();
 		
@@ -56,9 +56,10 @@ public class Cleaning {
 		}		
 	}
 	
-	private void cleanVertices() {
+	private static void cleanVertices() {
 		// mark vertices on hull
-		for(Edge e : ConvexHull.edges){
+		for(Element<Edge> we : ConvexHull.edges){
+			Edge e = we.getElem();
 			e.endpts[0].onhull = true;
 			e.endpts[1].onhull = true;			
 		}
@@ -76,7 +77,7 @@ public class Cleaning {
 		    // delete marked vertices, which are not on hull
 		    if(! currentVertex.mark || currentVertex.onhull){
 			    // reset flags
-			    currentVertex.duplicte = null;
+			    currentVertex.duplicate = null;
 			    currentVertex.onhull = false;
 			    
 			    ConvexHull.vertices.add(currentVertex);

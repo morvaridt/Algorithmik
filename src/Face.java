@@ -13,9 +13,10 @@ public class Face extends Struct{
 		edge = new Edge[3];
 	}
 	
+	// TODO: same as makeEdge just with edges instead of vertices
 	public static Face makeFace(){
 		Face f = new Face();
-		f.visible = ! ConvexHull.VISIBLE;
+		f.visible = false;
 		
 		add(f);
 		
