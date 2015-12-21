@@ -1,8 +1,8 @@
 
-public class Vertex extends Struct{
+public class Vertex {
 		
 	// coordinates
-	int[] v;
+	private int[] coordinates;
 	
 	Edge duplicate;
 	
@@ -13,12 +13,16 @@ public class Vertex extends Struct{
 	int vnum;
 
 	public Vertex(){
-		v = new int[3];
+		coordinates = new int[3];
 	}
 	
-	public Vertex makeVertex(){
+	public static Vertex makeVertex(int c0, int c1, int c2){
 		Vertex v = new Vertex();
 
+		v.setCoordinate(0, c0);
+		v.setCoordinate(1, c1);
+		v.setCoordinate(2, c2);
+		
 		v.duplicate = null;
 		v.onhull = false;
 		v.mark = false;
@@ -28,7 +32,20 @@ public class Vertex extends Struct{
 		return v;
 	}
 	
-	public void add(Vertex v){
+	public static void add(Vertex v){
 		ConvexHull.vertices.add(v);
+	}
+	
+	public Vertex next(){
+		ConvexHull.vertices.find(this);
+		return null;
+	}
+
+	public int getCoordinate(int i) {
+		return coordinates[i];
+	}
+
+	public void setCoordinate(int i, int j) {
+		coordinates[i] = j;
 	}
 }

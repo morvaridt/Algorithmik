@@ -20,11 +20,11 @@ public class Cleaning {
 		    
 		    // integrate new face
 		    if(currentEdge.newface != null){
-		    	if(currentEdge.adjface[0].visible){
-		    		currentEdge.adjface[1] = currentEdge.newface;
+		    	if(currentEdge.getAdjface(0).visible){
+		    		currentEdge.setAdjface(0, currentEdge.newface);
 		    	}
 		    	else{
-		    		currentEdge.adjface[0] = currentEdge.newface;
+		    		currentEdge.setAdjface(0, currentEdge.newface);
 		    	}
 		    	currentEdge.newface = null;
 		    }
@@ -58,10 +58,12 @@ public class Cleaning {
 	
 	private static void cleanVertices() {
 		// mark vertices on hull
-		for(Element<Edge> we : ConvexHull.edges){
+		QueueElement<Edge> we = ConvexHull.edges.getFirst();
+		while(we.getNext() != null){
 			Edge e = we.getElem();
-			e.endpts[0].onhull = true;
-			e.endpts[1].onhull = true;			
+			e.getEndpts(0).onhull = true;
+			e.getEndpts(1).onhull = true;			
+			we = we.getNext();
 		}
 		
 		Vertex firstVertex = ConvexHull.vertices.peek();

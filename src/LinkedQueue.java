@@ -1,18 +1,17 @@
-import java.util.Iterator;
 
 
-public class LinkedQueue implements Iterable<Element>{
-	private Element first;
-	private Element last;
+public class LinkedQueue<T> {
+	private QueueElement<T> first;
+	private QueueElement<T> last;
 	private int count;
 	
-	public <T> LinkedQueue(){
+	public LinkedQueue(){
 		first = last = null;
 		count = 0;
 	}
 	
-	<T> void add(T el){
-		Element<T> element = new Element<T>(el);
+	public void add(T el){
+		QueueElement<T> element = new QueueElement<T>(el);
 		if(count == 0){
 			first = element;
 			last = first;
@@ -25,19 +24,30 @@ public class LinkedQueue implements Iterable<Element>{
 		last.setNext(null);
 	}
 	
-	<T> T peek(){
-		return (T) first.getElem();
+	public T peek(){
+		return first.getElem();
 	}
 
-	<T> T poll(){
-		T tmp = (T) first.getElem();
+	public T poll(){
+		QueueElement<T> tmp = first;
 		first = first.getNext();
-		return tmp;
+		return tmp.getElem();
+	}
+	
+	public QueueElement<T> find(T elem){
+		QueueElement<T> curr = first;
+		while(curr != null){
+			if(curr.getElem() != elem){
+				curr = curr.getNext();
+			}
+			else{
+				break;
+			}
+		}
+		return curr;
 	}
 
-	@Override
-	public Iterator<Element> iterator() {
-		// TODO Auto-generated method stub
-		return null;
+	public QueueElement<T> getFirst() {
+		return first;
 	}
 }

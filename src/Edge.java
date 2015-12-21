@@ -1,15 +1,12 @@
 
-public class Edge extends Struct{
+public class Edge {
 	
-	Vertex[] endpts; 
-	Face[] adjface;
+	private Vertex[] endpts; 
+	private Face[] adjface;
 	
 	Face newface;
 	
 	boolean deleted;
-	
-	Edge next;
-	Edge prev;
 	
 	public Edge(){
 		endpts = new Vertex[2];
@@ -17,10 +14,12 @@ public class Edge extends Struct{
 	}
 			
 	
-	// TODO: change this method, so the two endpoints are given at the calling
-	public static Edge makeEdge(){
+	public static Edge makeEdge(Vertex v0, Vertex v1){
 		Edge e = new Edge();
 		e.endpts = new Vertex[2];
+		e.endpts[0] = v0;
+		e.endpts[1] = v1;
+		
 		e.adjface = new Face[2];
 	
 		e.newface = null;
@@ -33,5 +32,20 @@ public class Edge extends Struct{
 	
 	public static void add(Edge e){
 		ConvexHull.edges.add(e);
+	}
+
+
+	//TODO: endpt ohne s
+	public Vertex getEndpts(int i) {
+		return endpts[i];
+	}
+
+
+	public Face getAdjface(int i) {
+		return adjface[i];
+	}
+	
+	public void setAdjface(int i, Face f){
+		adjface[i] = f;
 	}
 }

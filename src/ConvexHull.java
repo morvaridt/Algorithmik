@@ -1,16 +1,15 @@
 
-
 public class ConvexHull {
 		
 	
-	static LinkedQueue edges;
-	static LinkedQueue faces;
-	static LinkedQueue vertices;
+	static LinkedQueue<Edge> edges;
+	static LinkedQueue<Face> faces;
+	static LinkedQueue<Vertex> vertices;
 
 	
 	public static void main(String[] args){
 		setUp();
-		Struct.readVertices();
+		Struct.readVertices(args[0]);
 		Struct.buildTetrahedron();
 		Struct.constructHull();
 		print();
@@ -22,9 +21,9 @@ public class ConvexHull {
 	}
 
 	public static void setUp(){
-		edges = new LinkedQueue();
-		faces = new LinkedQueue();		
-		vertices = new LinkedQueue();
+		edges = new LinkedQueue<Edge>();
+		faces = new LinkedQueue<Face>();		
+		vertices = new LinkedQueue<Vertex>();
 	}
 
 }
