@@ -11,9 +11,9 @@ public class Struct {
 		Edge[] new_edge = new Edge[2];	
 		
 		for(int i = 0; i < 2; i++){
-			if(! (e.getEndpts(i).duplicate == null)){
-				new_edge[i] = Edge.makeEdge(e.getEndpts(i), p);
-				e.getEndpts(i).duplicate = new_edge[i];
+			if(! (e.getEndpt(i).duplicate == null)){
+				new_edge[i] = Edge.makeEdge(e.getEndpt(i), p);
+				e.getEndpt(i).duplicate = new_edge[i];
 			}
 		}
 		
@@ -48,15 +48,15 @@ public class Struct {
 			}
 		}
 		
-		for(i = 0; invisibleFace.getVertex(i) != e.getEndpts(1); i++){}
+		for(i = 0; invisibleFace.getVertex(i) != e.getEndpt(1); i++){}
 		
-		if(invisibleFace.getVertex((i + 1) % 3) != e.getEndpts(0)){
-			f.setVertex(0, e.getEndpts(1));
-			f.setVertex(1, e.getEndpts(0));
+		if(invisibleFace.getVertex((i + 1) % 3) != e.getEndpt(0)){
+			f.setVertex(0, e.getEndpt(1));
+			f.setVertex(1, e.getEndpt(0));
 		}
 		else{
-			f.setVertex(0, e.getEndpts(0));
-			f.setVertex(1, e.getEndpts(1));
+			f.setVertex(0, e.getEndpt(0));
+			f.setVertex(1, e.getEndpt(1));
 			
 			swap(f.getEdge(1), f.getEdge(2));
 		}
@@ -137,16 +137,15 @@ public class Struct {
 		while(collinear(v0.getElem(), v0.getNext().getElem(), v0.getNext().getNext().getElem())){
 			v0 = v0.getNext();
 			if(v0.getNext() == ConvexHull.vertices.getFirst()){
-				// TODO: write error in red
-				System.out.println("All points are collinear");
+				System.err.println("All points are collinear");
 				System.exit(0);
 			}
 		}
 		
 		// mark vertices as processed
-		v0.getElem().mark = true;
-		v0.getNext().getElem().mark = true;
-		v0.getNext().getNext().getElem().mark = true;
+		v0.getElem().setMark(true);
+		v0.getNext().getElem().setMark(true);
+		v0.getNext().getNext().getElem().setMark(true);
 		
 		Edge e0 = Edge.makeEdge(v0.getElem(), v0.getNext().getElem());
 		Edge e1 = Edge.makeEdge(v0.getNext().getElem(), v0.getNext().getNext().getElem());
@@ -166,14 +165,12 @@ public class Struct {
 		while(volume != 1){
 			v3 = v3.getNext();
 			if(v3 == ConvexHull.vertices.getFirst()){
-				// TODO: write error in red
-				System.out.println("All points are coplanar");
+				System.err.println("All points are coplanar");
 				System.exit(0);
 			}
 			volume = volume(f, v3.getElem());
 		}
-		// TODO: any occurence, where we assign v3.mark = false? --> method?
-		v3.getElem().mark = true;
+		v3.getElem().setMark(true);
 		
 		// store vertices in ccw order
 		if(volume < 0){
@@ -215,7 +212,6 @@ public class Struct {
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			String sb = br.readLine();
 			while(sb != null){
-				
 				String[] coords = sb.split(" ");
 
 				Vertex.makeVertex(Integer.parseInt(coords[0]), Integer.parseInt(coords[1]), Integer.parseInt(coords[2]));
@@ -232,8 +228,8 @@ public class Struct {
 		QueueElement<Vertex> v = ConvexHull.vertices.getFirst();
 			
 		{
-			if(! v.getElem().mark){
-				v.getElem().mark = true;
+			if(! v.getElem().getMark()){
+				v.getElem().setMark(true);
 				addOne(v.getElem());
 				Cleaning.cleanUp();
 			}

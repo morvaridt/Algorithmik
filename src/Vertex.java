@@ -7,7 +7,7 @@ public class Vertex {
 	Edge duplicate;
 	
 	boolean onhull;
-	boolean mark;
+	private static boolean mark;
 	
 	// TODO: really used?
 	int vnum;
@@ -25,7 +25,7 @@ public class Vertex {
 		
 		v.duplicate = null;
 		v.onhull = false;
-		v.mark = false;
+		v.setMark(false);
 		
 		add(v);
 		
@@ -47,5 +47,13 @@ public class Vertex {
 
 	public void setCoordinate(int i, int j) {
 		coordinates[i] = j;
+	}
+
+	public boolean getMark() {
+		return mark;
+	}
+
+	public void setMark(boolean mark) {
+		Vertex.mark = mark;
 	}
 }

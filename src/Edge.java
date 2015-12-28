@@ -12,8 +12,7 @@ public class Edge {
 		endpts = new Vertex[2];
 		adjface = new Face[2];
 	}
-			
-	
+				
 	public static Edge makeEdge(Vertex v0, Vertex v1){
 		Edge e = new Edge();
 		e.endpts = new Vertex[2];
@@ -34,12 +33,9 @@ public class Edge {
 		ConvexHull.edges.add(e);
 	}
 
-
-	//TODO: endpt ohne s
-	public Vertex getEndpts(int i) {
+	public Vertex getEndpt(int i) {
 		return endpts[i];
 	}
-
 
 	public Face getAdjface(int i) {
 		return adjface[i];

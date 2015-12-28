@@ -1,11 +1,9 @@
 
 public class ConvexHull {
 		
-	
 	static LinkedQueue<Edge> edges;
 	static LinkedQueue<Face> faces;
 	static LinkedQueue<Vertex> vertices;
-
 	
 	public static void main(String[] args){
 		setUp();
@@ -25,5 +23,4 @@ public class ConvexHull {
 		faces = new LinkedQueue<Face>();		
 		vertices = new LinkedQueue<Vertex>();
 	}
-
 }

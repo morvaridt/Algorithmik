@@ -61,8 +61,8 @@ public class Cleaning {
 		QueueElement<Edge> we = ConvexHull.edges.getFirst();
 		while(we.getNext() != null){
 			Edge e = we.getElem();
-			e.getEndpts(0).onhull = true;
-			e.getEndpts(1).onhull = true;			
+			e.getEndpt(0).onhull = true;
+			e.getEndpt(1).onhull = true;			
 			we = we.getNext();
 		}
 		
@@ -77,7 +77,7 @@ public class Cleaning {
 		    }
 		    
 		    // delete marked vertices, which are not on hull
-		    if(! currentVertex.mark || currentVertex.onhull){
+		    if(! currentVertex.getMark() || currentVertex.onhull){
 			    // reset flags
 			    currentVertex.duplicate = null;
 			    currentVertex.onhull = false;
