@@ -203,6 +203,7 @@ public class Struct {
 	
 	public static void readVertices(String file) {
 		File f = new File(file);
+		
 		if(! f.canRead() || ! f.isFile()){
 			System.err.println("File " + file + " could not be read.");
 			System.exit(0);
@@ -214,8 +215,13 @@ public class Struct {
 			while(sb != null){
 				String[] coords = sb.split(" ");
 
-				Vertex.makeVertex(Integer.parseInt(coords[0]), Integer.parseInt(coords[1]), Integer.parseInt(coords[2]));
+				if(coords[0].equals("#")){
+					//TODO: Konfigurationszeile auslesen
+				}
 				
+				if(coords[0].equals("c")){
+					Vertex.makeVertex(Integer.parseInt(coords[1]), Integer.parseInt(coords[2]), Integer.parseInt(coords[3]));
+				}
 				sb = br.readLine();
 			}
 			br.close();

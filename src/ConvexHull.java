@@ -5,9 +5,21 @@ public class ConvexHull {
 	static LinkedQueue<Face> faces;
 	static LinkedQueue<Vertex> vertices;
 	
+	final static boolean generateNewCoordinates = true;
+	
 	public static void main(String[] args){
 		setUp();
-		Struct.readVertices(args[0]);
+		if(generateNewCoordinates){
+			Struct.readVertices(CoordinateGeneration.generateCoordinates(4, 0, 2));
+		}
+		else{
+			if(args[0].equals("")){
+				Struct.readVertices(CoordinateGeneration.generateCoordinates());
+			}
+			else{
+				Struct.readVertices(args[0]);
+			}
+		}
 		Struct.buildTetrahedron();
 		Struct.constructHull();
 		print();
