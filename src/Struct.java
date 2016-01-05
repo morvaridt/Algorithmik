@@ -8,7 +8,7 @@ public class Struct {
 	
 	public static Face makeStructs(Edge e, Vertex p){
 		Face new_face = new Face();
-		Edge[] new_edge = new Edge[2];	
+		Edge[] new_edge = new Edge[2];
 		
 		for(int i = 0; i < 2; i++){
 			if(! (e.getEndpt(i).duplicate == null)){
@@ -22,7 +22,8 @@ public class Struct {
 		
 		for(int i = 0; i < 2; ++i){
 			for(int j = 0; j < 3; ++j){
-				if(! (new_edge[i].getAdjface(j) == null)){
+
+				if(new_edge[i] == null || new_edge[i].getAdjface(j) == null){
 					new_edge[i].setAdjface(j, new_face);
 					break;
 				}
@@ -114,7 +115,7 @@ public class Struct {
 		double cz = f.getVertex(2).getCoordinate(2) - p.getCoordinate(2);
 		
 		double volume = ax * (by * cz - bz * cy) + ay * (bz * cx - bx * cz) + az * (bx * cy - by * cx);
-		
+				
 		if(volume > 0.5){
 			return 1;
 		}
@@ -162,7 +163,7 @@ public class Struct {
 		v3 = v0.getNext().getNext().getNext();
 		volume = volume(f, v3.getElem());
 		
-		while(volume != 1){
+		while(volume == 0){
 			v3 = v3.getNext();
 			if(v3 == ConvexHull.vertices.getFirst()){
 				System.err.println("All points are coplanar");
@@ -193,9 +194,9 @@ public class Struct {
 
 	private static boolean collinear(Vertex v0, Vertex v1, Vertex v2) {
 		
-		return 	(v2.getCoordinate(2) - v0.getCoordinate(3)) * (v1.getCoordinate(1) - v0.getCoordinate(1)) -
-				(v1.getCoordinate(2) - v0.getCoordinate(3)) * (v2.getCoordinate(1) - v0.getCoordinate(1)) == 0 &&
-				(v1.getCoordinate(2) - v0.getCoordinate(3)) * (v2.getCoordinate(0) - v0.getCoordinate(0)) -
+		return 	(v2.getCoordinate(2) - v0.getCoordinate(2)) * (v1.getCoordinate(1) - v0.getCoordinate(1)) -
+				(v1.getCoordinate(2) - v0.getCoordinate(2)) * (v2.getCoordinate(1) - v0.getCoordinate(1)) == 0 &&
+				(v1.getCoordinate(2) - v0.getCoordinate(2)) * (v2.getCoordinate(0) - v0.getCoordinate(0)) -
 				(v1.getCoordinate(0) - v0.getCoordinate(0)) * (v2.getCoordinate(2) - v0.getCoordinate(2)) == 0 &&
 				(v1.getCoordinate(0) - v0.getCoordinate(0)) * (v2.getCoordinate(1) - v0.getCoordinate(1)) -
 				(v1.getCoordinate(1) - v0.getCoordinate(1)) * (v2.getCoordinate(0) - v0.getCoordinate(0)) == 0;

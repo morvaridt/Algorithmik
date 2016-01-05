@@ -58,7 +58,7 @@ public class CoordinateGeneration {
 	private static int calcCoord(){
 		int z = (int)(upperBound* rnd.nextDouble());
 		if ( z<lowerBound || z > upperBound ) z=1;
-		return z; //TODO: dies macht noch Unsinn
+		return z;
 	}
 	
 	public static void main(String[] args){

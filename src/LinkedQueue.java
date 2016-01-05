@@ -21,7 +21,7 @@ public class LinkedQueue<T> {
 			last = last.getNext();
 		}
 		count++;
-		last.setNext(null);
+		last.setNext(first);
 	}
 	
 	public T peek(){

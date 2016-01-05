@@ -8,6 +8,7 @@ public class ConvexHull {
 	final static boolean generateNewCoordinates = true;
 	
 	public static void main(String[] args){
+		System.out.println("I started");
 		setUp();
 		if(generateNewCoordinates){
 			Struct.readVertices(CoordinateGeneration.generateCoordinates(4, 0, 2));
@@ -23,6 +24,7 @@ public class ConvexHull {
 		Struct.buildTetrahedron();
 		Struct.constructHull();
 		print();
+		System.out.println("I'm finished");
 	}
 	
 	private static void print() {
